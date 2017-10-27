@@ -1,4 +1,5 @@
 <?php
+namespace app\controllers;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -11,9 +12,10 @@
  *
  * @author т
  */
-class Posts {
+class Posts extends \vendor\core\base\Controller {
   
       function indexAction() {
+          debug($this->route);
         echo "posts::index<br>";
     }
        function testAction() {

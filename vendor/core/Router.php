@@ -1,5 +1,5 @@
 <?php
-
+namespace vendor\core;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -47,25 +47,29 @@ class Router
                 if (!isset($route['action'])) {
                     $route['action']='index';
                 }
+                $route['controller']= self::upperCamelCase($route['controller']);
                 self::$route=$route;
-                debug(self::$route);
                 return true;
             }
         }
         return false ;
     }
     public static function dispatch($url) {
-        if (self::matchRoute($url)) {
-            $controller=self::upperCamelCase(self::$route['controller']) ;
-            if (class_exists($controller)) {
-                $cObj=new $controller; 
+        $url= self::removeQueryString($url);
+        var_dump($url);
+        if (self::matchRoute($url)) { 
+            
+            $controller= 'app\controllers\\' . self::$route['controller'] ;
+           
+               if (class_exists($controller)) {
+                $cObj=new $controller(self::$route); 
                 
                 /* .Action добовляется для того что бы
                  *  не возможно было вызвать методы без называнье Action
                  */
                 
-                $action= self::lowwerCamelCase(self::$route['action'])."Action";
-                if (method_exists($cObj, $action)) {
+                  $action= self::lowwerCamelCase(self::$route['action'])."Action";
+                     if (method_exists($cObj, $action)) {
                     $cObj->$action();
                 } else {
                  echo "Method $controller::$action not found<br>";    
@@ -95,6 +99,19 @@ class Router
       return lcfirst(self::upperCamelCase($name));
         
         
+    }
+    protected static function removeQueryString($url)
+    {
+        if ($url) 
+        {
+         $params = explode('&', $url, 2);
+         if(false === strpos($params[0], '='))
+                 {
+             return rtrim($params[0], '/');   
+                 } else {
+                     return '';    
+                 }
+        }   
     }
     
     
