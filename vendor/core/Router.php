@@ -56,7 +56,6 @@ class Router
     }
     public static function dispatch($url) {
         $url= self::removeQueryString($url);
-        var_dump($url);
         if (self::matchRoute($url)) { 
             
             $controller= 'app\controllers\\' . self::$route['controller'] ;
@@ -71,6 +70,7 @@ class Router
                   $action= self::lowwerCamelCase(self::$route['action'])."Action";
                      if (method_exists($cObj, $action)) {
                     $cObj->$action();
+                    $cObj->getView();
                 } else {
                  echo "Method $controller::$action not found<br>";    
                 }

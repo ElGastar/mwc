@@ -11,15 +11,34 @@ namespace app\controllers;
  *
  * @author т
  */
-class Main {
-      function indexAction() {
-        echo "Main::index<br>";
+class Main extends App {
+    /*
+     * определяем шаблон и вид
+     * в данном случай шаблон layouts/main
+     * вид Main/index.php
+     * если ничего не включить 
+     * поключентся дефолтный шаблон layouts/default 
+     */
+    //public $layout="main";
+            function indexAction() {
+                //$this->layout=false;
+                //$this->view='test';
+            
+                // можно так $this->set(['name'=>'akmal']);
+                //или 
+                $name='akmal';
+                $colors=[
+                    'black'=>'черный',
+                    'white'=>'белый'
+                ];
+                $title="page title";
+                $this->set(compact('colors','name','title'));
     }
        function testAction() {
-        echo "Main::test<br>";
+       
     }
        function testNewAction() {
-        echo "Main::testNew<br>";
+       
     }
      function testq() {
         echo "posts::testNew<br>";

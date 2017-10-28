@@ -13,10 +13,10 @@ namespace app\controllers;
  *
  * @author т
  */
-class Page extends \vendor\core\base\Controller {
+class Page extends App {
     public function viewAction() {
         debug($this->route);
         debug($_GET);
-        echo "PAge::View";
+        
     }
 }

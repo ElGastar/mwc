@@ -1,1 +1,1 @@
-<h1>test</h1>
+<code>__FILE__</code>

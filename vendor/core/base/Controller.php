@@ -13,12 +13,41 @@ namespace vendor\core\base;
  *
  * @author т
  */
-abstract class Controller {
+abstract class Controller { 
+/**
+  * Текущий маршрут и параметры(Controller,action,param)
+  * @var array
+  */
     public $route=[];
+    
+ /**
+   * вид
+   * @var string
+   */
     public $view;
-    public function __construct($param) {
-        $this->route=$param;
-        //$this->view=$param['action'];
-        //include APP."/views/{$param['controller']}/{$this->view}.php";
+    
+    /**
+  * Текущий шаблон
+  * @var string
+  */
+    public $layout;
+    /**
+  * Ползовательские данные 
+  * @var array
+  */
+    public $vars=[];
+    
+    public function __construct($route) {
+        $this->route=$route;
+        $this->view=$route['action'];
+ 
+    }
+    
+    public function getView() {
+        $vObj= new View($this->route, $this->layout, $this->view);
+        $vObj->rendor($this->vars);
+    }
+    public function set($vars) {
+        $this->vars=$vars;
     }
 }
