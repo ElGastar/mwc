@@ -14,6 +14,6 @@ namespace app\controllers;
  * класов в папке controllers
  * 
  */
-class App extends \vendor\core\base\Controller {
+class AppController extends \vendor\core\base\Controller {
     //put your code here
 }

@@ -1,5 +1,7 @@
 <?php
 namespace app\controllers;
+
+use app\models\Main;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,7 +13,7 @@ namespace app\controllers;
  *
  * @author т
  */
-class Main extends App {
+class MainController extends AppController {
     /*
      * определяем шаблон и вид
      * в данном случай шаблон layouts/main
@@ -25,14 +27,12 @@ class Main extends App {
                 //$this->view='test';
             
                 // можно так $this->set(['name'=>'akmal']);
-                //или 
-                $name='akmal';
-                $colors=[
-                    'black'=>'черный',
-                    'white'=>'белый'
-                ];
+              $model = new Main;
+              //$res=$model->query("CREATE TABLE posts SELECT * FROM yii2.post");
+              $posts=$model->findAll();
+              
                 $title="page title";
-                $this->set(compact('colors','name','title'));
+                $this->set(compact('title','posts'));
     }
        function testAction() {
        

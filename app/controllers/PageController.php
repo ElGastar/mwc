@@ -13,7 +13,7 @@ namespace app\controllers;
  *
  * @author т
  */
-class Page extends App {
+class PageController extends AppController {
     public function viewAction() {
         debug($this->route);
         debug($_GET);

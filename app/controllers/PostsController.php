@@ -12,7 +12,7 @@ namespace app\controllers;
  *
  * @author т
  */
-class Posts extends App {
+class PostsController extends AppController {
   
       function indexAction() {
           debug($this->route);
