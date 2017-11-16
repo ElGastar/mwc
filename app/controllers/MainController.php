@@ -30,6 +30,10 @@ class MainController extends AppController {
               $model = new Main;
               //$res=$model->query("CREATE TABLE posts SELECT * FROM yii2.post");
               $posts=$model->findAll();
+              $post=$model->findOne(2);
+              $date=$model->selectBySql("SELECT * FROM {$model->table} WHERE title LIKE ? ",['%кс%']);
+              $find_like=$model->findLike('текс','title');
+              debug($find_like);
               
                 $title="page title";
                 $this->set(compact('title','posts'));
